@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_recovery_wallet_app/contracts/SocialRecoveryWalletNew.g.dart';
+import 'package:social_recovery_wallet_app/contracts/SocialRecoveryWallet.g.dart';
 import 'package:social_recovery_wallet_app/global_state_manager.dart';
 import 'package:social_recovery_wallet_app/pages/create_new_social_recovery_wallet_page.dart';
 import 'package:social_recovery_wallet_app/pages/home_page.dart';

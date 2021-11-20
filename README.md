@@ -1,5 +1,13 @@
 # social_recovery_wallet_app
 
+Command to build the Dart file to interact with Smart Contracts:
+
+Put Smart Contracts in /lib with extension .abi.json
+
+```
+flutter packages pub run build_runner build
+```
+
 A new Flutter project.
 
 ## Getting Started
