@@ -75,7 +75,7 @@ class GlobalStateManager {
     );
 
     var signedTx =
-        await _ethClient.signTransaction(_credentials, transaction, chainId: 3);
+        await _ethClient.signTransaction(_credentials, transaction, chainId: int.parse(dotenv.env['CHAIN_ID'].toString()));
     var txResults = await _ethClient.sendRawTransaction(signedTx);
     return txResults;
   }
