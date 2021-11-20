@@ -8,13 +8,17 @@ window.addEventListener('load', function () {
     }
 })
 
-function deploy(data, spender, guardians, numConfTx, numConfChangeSpender, numConfAddTrustedAddress) {
+function deploy(data, spender, guardians, trustedAddresses, numConfTx, numConfChangeSpender, numConfAddTrustedAddress) {
         var contractInstance = new window.web3.eth.Contract(data.abi);
 
         return contractInstance.deploy({
             data: data.bytecode,
-            arguments: [spender, guardians, numConfTx, numConfChangeSpender, numConfAddTrustedAddress]
+            arguments: [spender, guardians, trustedAddresses, numConfTx, numConfChangeSpender, numConfAddTrustedAddress]
           }).encodeABI()
+}
+
+function keccak256(data) {
+    return window.web3.utils.keccak256(data)
 }
 
  function loadJSON(callback) {

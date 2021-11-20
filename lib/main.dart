@@ -23,23 +23,39 @@ class MyApp extends StatelessWidget {
       title: 'Social Recovery Wallet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.teal,
-      ),
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.teal,
+          colorScheme: const ColorScheme(
+            primary: Colors.teal,
+            // <---- I set white color here
+            primaryVariant: Colors.teal,
+            secondary: Colors.deepOrangeAccent,
+            secondaryVariant: Colors.deepOrangeAccent,
+            background: Colors.white,
+            surface: Colors.white,
+            onBackground: Colors.white,
+            error: Colors.redAccent,
+            onError: Colors.redAccent,
+            onPrimary: Colors.white,
+            onSecondary: Colors.deepOrangeAccent,
+            onSurface: Colors.white,
+            brightness: Brightness.light,
+          )),
       //home: const UnlockWalletPage(title: 'Social Recovery Wallet'),
       initialRoute: '/',
       routes: {
         '/': (context) => const UnlockWalletPage(),
         '/home_page': (context) => const HomePage(),
-        '/create_new_social_recovery_wallet_page': (context) => const CreateNewSocialRecoveryWalletPage(),
+        '/create_new_social_recovery_wallet_page': (context) =>
+            const CreateNewSocialRecoveryWalletPage(),
       },
     );
   }

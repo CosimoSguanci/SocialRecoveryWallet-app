@@ -1,15 +1,12 @@
 import 'dart:convert';
+import 'dart:js' as js;
 import 'dart:typed_data';
-import 'package:convert/convert.dart';
 
+import 'package:convert/convert.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
-
 import 'package:web3dart/web3dart.dart';
-import 'dart:js' as js;
-
-
 
 class GlobalStateManager {
   static final GlobalStateManager _instance = GlobalStateManager._internal();
@@ -51,25 +48,46 @@ class GlobalStateManager {
     }
   }
 
-  Future deploySocialRecoverWallet(String spender, List<String> guardians, int numConfirmationsRequired, int numConfirmationsRequiredToChangeSpender, int numConfirmationsRequiredToAddTrustedAddress) async {
+  Future deploySocialRecoverWallet(
+      String spender,
+      List<String> guardians,
+      List<String> trustedAddresses,
+      int numConfirmationsRequired,
+      int numConfirmationsRequiredToChangeSpender,
+      int numConfirmationsRequiredToAddTrustedAddress) async {
     var abiJson = await _loadJsonContractAbi();
-    var jsResponse = js.context.callMethod('deploy', [js.JsObject.jsify(abiJson), '0x5C54CF7D1e5AC8636bD48D5812cf3C60eDD8f635', js.JsObject.jsify(["0x83aF2B2EE83f6726BF1B3274b1E44d112959E348", "0xDBB756C1a8695D97D795590d3755d732E61acBD4"]), 1, 1, 1]);
+    guardians = guardians.map((g) => _keccak256(g)).toList();
+    var jsResponse = js.context.callMethod('deploy', [
+      js.JsObject.jsify(abiJson),
+      spender,
+      js.JsObject.jsify(guardians),
+      js.JsObject.jsify(trustedAddresses),
+      numConfirmationsRequired,
+      numConfirmationsRequiredToChangeSpender,
+      numConfirmationsRequiredToAddTrustedAddress
+    ]);
     Transaction transaction = Transaction(
-      from: EthereumAddress.fromHex(spender), 
+      from: EthereumAddress.fromHex(spender),
       data: Uint8List.fromList(hex.decode(jsResponse.toString().substring(2))),
       value: EtherAmount.inWei(BigInt.from(0)),
-      nonce: await _ethClient.getTransactionCount(EthereumAddress.fromHex(spender)),
+      nonce: await _ethClient
+          .getTransactionCount(EthereumAddress.fromHex(spender)),
     );
 
-    var signedTx = await _ethClient.signTransaction(_credentials, transaction, chainId: 3);
+    var signedTx =
+        await _ethClient.signTransaction(_credentials, transaction, chainId: 3);
     var txResults = await _ethClient.sendRawTransaction(signedTx);
-    print(txResults);
+    return txResults;
   }
 
+  String _keccak256(String data) {
+    var jsResponse = js.context.callMethod('keccak256', [data]);
+    return jsResponse;
+  }
 
   Future _loadJsonContractAbi() async {
-    var jsonText = await rootBundle.loadString('contracts/SocialRecoveryWalletNew.abi.json');
+    var jsonText =
+        await rootBundle.loadString('contracts/SocialRecoveryWallet.abi.json');
     return jsonDecode(jsonText);
   }
-
 }
