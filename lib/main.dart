@@ -3,6 +3,7 @@ import 'package:social_recovery_wallet_app/contracts/SocialRecoveryWallet.g.dart
 import 'package:social_recovery_wallet_app/global_state_manager.dart';
 import 'package:social_recovery_wallet_app/pages/create_new_social_recovery_wallet_page.dart';
 import 'package:social_recovery_wallet_app/pages/home_page.dart';
+import 'package:social_recovery_wallet_app/pages/open_social_recovery_wallet_page.dart';
 import 'package:social_recovery_wallet_app/pages/unlock_wallet_page.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -40,13 +41,13 @@ class MyApp extends StatelessWidget {
             secondary: Colors.deepOrangeAccent,
             secondaryVariant: Colors.deepOrangeAccent,
             background: Colors.white,
-            surface: Colors.white,
+            surface: Colors.black,
             onBackground: Colors.white,
             error: Colors.redAccent,
             onError: Colors.redAccent,
             onPrimary: Colors.white,
             onSecondary: Colors.deepOrangeAccent,
-            onSurface: Colors.white,
+            onSurface: Colors.blueGrey,
             brightness: Brightness.light,
           )),
       //home: const UnlockWalletPage(title: 'Social Recovery Wallet'),
@@ -56,6 +57,8 @@ class MyApp extends StatelessWidget {
         '/home_page': (context) => const HomePage(),
         '/create_new_social_recovery_wallet_page': (context) =>
             const CreateNewSocialRecoveryWalletPage(),
+        '/open_social_recovery_wallet_page': (context) =>
+        const OpenSocialRecoveryWalletPage(),
       },
     );
   }

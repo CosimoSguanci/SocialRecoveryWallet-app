@@ -6,13 +6,17 @@ import 'package:convert/convert.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
+import 'package:social_recovery_wallet_app/utils/roles.dart';
 import 'package:web3dart/web3dart.dart';
+
+import 'contracts/SocialRecoveryWallet.g.dart';
 
 class GlobalStateManager {
   static final GlobalStateManager _instance = GlobalStateManager._internal();
   late Client _httpClient;
   late Web3Client _ethClient;
   late EthPrivateKey _credentials;
+  late SocialRecoveryWallet _currentSocialRecoveryWallet;
 
   // using a factory is important
   // because it promises to return _an_ object of this type
@@ -78,6 +82,32 @@ class GlobalStateManager {
         await _ethClient.signTransaction(_credentials, transaction, chainId: int.parse(dotenv.env['CHAIN_ID'].toString()));
     var txResults = await _ethClient.sendRawTransaction(signedTx);
     return txResults;
+  }
+
+  void openSocialRecoveryWallet(String contractAddress) {
+    _currentSocialRecoveryWallet = SocialRecoveryWallet(address: EthereumAddress.fromHex(contractAddress), client: _ethClient);
+  }
+
+  Future<Roles> getRole(String walletAddress) async {
+    EthereumAddress spender = await _currentSocialRecoveryWallet.spender();
+
+    if(spender.hex.toLowerCase() == walletAddress) {
+      return Roles.spender;
+    }
+
+    bool isGuardian = await _currentSocialRecoveryWallet.isGuardian(Uint8List.fromList(hex.decode(_keccak256(walletAddress))));
+
+    if(isGuardian) {
+      return Roles.guardian;
+    }
+
+    bool isTrustedAddress = await _currentSocialRecoveryWallet.isTrustedAddress(EthereumAddress.fromHex(walletAddress));
+
+    if(isTrustedAddress) {
+      return Roles.trustedAddress;
+    }
+
+    return Roles.none;
   }
 
   String _keccak256(String data) {

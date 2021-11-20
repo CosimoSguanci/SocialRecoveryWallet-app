@@ -43,6 +43,7 @@ class _UnlockWalletPageState extends State<UnlockWalletPage> {
                   )),
               Container(
                 child: TextField(
+                  obscureText: true,
                   controller: privateKeyController,
                   decoration: const InputDecoration(
                       border: InputBorder.none, hintText: 'Private Key...'),

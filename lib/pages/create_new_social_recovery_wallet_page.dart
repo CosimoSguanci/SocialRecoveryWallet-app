@@ -270,7 +270,6 @@ class _CreateNewSocialRecoveryWalletPageState
                         throw Exception();
                       }
                     } catch (e) {
-                      print(e);
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Invalid Input"),
                       ));
