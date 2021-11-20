@@ -6,11 +6,13 @@
 *.log
 *.pyc
 *.swp
+*.env
 .DS_Store
 .atom/
 .buildlog/
 .history
 .svn/
+constants.js
 
 # IntelliJ related
 *.iml
