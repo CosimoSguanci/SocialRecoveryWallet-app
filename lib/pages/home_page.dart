@@ -47,27 +47,25 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
               Container(
                 margin: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/create_new_social_recovery_wallet_page');
+                    Navigator.pushNamed(
+                        context, '/create_new_social_recovery_wallet_page');
                   },
-                  child:
-                  const Text('Create New Social Recovery Wallet', style: TextStyle(color: Colors.white)),
+                  child: const Text('Create New Social Recovery Wallet',
+                      style: TextStyle(color: Colors.white)),
                 ),
               ),
-
               Container(
                 margin: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
-                  onPressed: () {  },
-                  child:
-                  const Text('Open Social Recovery Wallet', style: TextStyle(color: Colors.white)),
+                  onPressed: () {},
+                  child: const Text('Open Social Recovery Wallet',
+                      style: TextStyle(color: Colors.white)),
                 ),
               )
-
             ],
           ),
         )));

@@ -53,10 +53,10 @@ class _UnlockWalletPageState extends State<UnlockWalletPage> {
               ElevatedButton(
                 onPressed: () {
                   String privateKey = privateKeyController.text;
-                  try{
+                  try {
                     GlobalStateManager().setPrivateKey(privateKey);
                     Navigator.pushNamed(context, '/home_page');
-                  } catch(e) {
+                  } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Incorrect Private Key"),
                     ));
