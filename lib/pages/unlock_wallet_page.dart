@@ -12,7 +12,14 @@ class UnlockWalletPage extends StatefulWidget {
 }
 
 class _UnlockWalletPageState extends State<UnlockWalletPage> {
-  final TextEditingController privateKeyController = TextEditingController();
+
+final TextEditingController privateKeyController = TextEditingController();
+
+  @override
+  void initState() {
+    privateKeyController.text = ""; // todo remove
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

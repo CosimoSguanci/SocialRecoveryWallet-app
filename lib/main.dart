@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:social_recovery_wallet_app/contracts/SocialRecoveryWallet.g.dart';
 import 'package:social_recovery_wallet_app/global_state_manager.dart';
 import 'package:social_recovery_wallet_app/pages/create_new_social_recovery_wallet_page.dart';
+import 'package:social_recovery_wallet_app/pages/guardian_social_recovery_wallet_page.dart';
 import 'package:social_recovery_wallet_app/pages/home_page.dart';
 import 'package:social_recovery_wallet_app/pages/open_social_recovery_wallet_page.dart';
+import 'package:social_recovery_wallet_app/pages/spender_social_recovery_wallet_page.dart';
 import 'package:social_recovery_wallet_app/pages/unlock_wallet_page.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -59,6 +61,10 @@ class MyApp extends StatelessWidget {
             const CreateNewSocialRecoveryWalletPage(),
         '/open_social_recovery_wallet_page': (context) =>
         const OpenSocialRecoveryWalletPage(),
+        '/spender_social_recovery_wallet_page': (context) =>
+        const SpenderSocialRecoveryWalletPage(),
+        '/guardian_social_recovery_wallet_page': (context) =>
+        const GuardianSocialRecoveryWalletPage(),
       },
     );
   }
