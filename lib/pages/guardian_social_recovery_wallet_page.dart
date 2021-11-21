@@ -54,10 +54,11 @@ class _GuardianSocialRecoveryWalletPageState
             child: SizedBox(
           width: double.infinity,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.all(16.0),
+                margin:
+                    const EdgeInsets.only(top: 32.0, bottom: 32.0, left: 48.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -66,30 +67,34 @@ class _GuardianSocialRecoveryWalletPageState
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           _walletAddress = snapshot.data.toString();
-                          return Text("Wallet address: $_walletAddress");
+                          return Text(
+                            "Wallet address: $_walletAddress",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          );
                         })
                   ],
                 ),
               ),
               Container(
-                margin: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.only(left: 48.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                        "Social Recovery Wallet Address: $_socialRecoveryWalletAddress")
+                        "Social Recovery Wallet Address: $_socialRecoveryWalletAddress", style: const TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
               _showTx
                   ? Container(
-                      margin: const EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(32.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("Tx Hash: $_txHash"),
+                          Text("Tx Hash: $_txHash", style:
+                          const TextStyle(fontWeight: FontWeight.bold)),
                           Container(
-                              margin: const EdgeInsets.only(top: 8.0),
+                              margin: const EdgeInsets.only(top: 16.0),
                               child: ElevatedButton(
                                   onPressed: () async =>
                                       await launch("$etherscanBaseUrl$_txHash"),
@@ -100,10 +105,11 @@ class _GuardianSocialRecoveryWalletPageState
                   : Container(),
               Container(
                   margin:
-                      const EdgeInsets.only(left: 10.0, top: 16.0, right: 10.0),
+                  const EdgeInsets.only(left: 32.0, top: 32.0, right: 32.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Divider(color: Theme.of(context).colorScheme.primary),
                       Container(
                         margin: const EdgeInsets.all(16.0),
                         child: const Text(
@@ -153,6 +159,7 @@ class _GuardianSocialRecoveryWalletPageState
                               style: TextStyle(color: Colors.white)),
                         ),
                       ),
+                      Divider(color: Theme.of(context).colorScheme.primary),
                       Container(
                         margin: const EdgeInsets.all(16.0),
                         child: const Text(
@@ -195,6 +202,7 @@ class _GuardianSocialRecoveryWalletPageState
                               style: TextStyle(color: Colors.white)),
                         ),
                       ),
+                      Divider(color: Theme.of(context).colorScheme.primary),
                       Container(
                         margin: const EdgeInsets.all(16.0),
                         child: const Text(
@@ -239,6 +247,7 @@ class _GuardianSocialRecoveryWalletPageState
                               style: TextStyle(color: Colors.white)),
                         ),
                       ),
+                      Divider(color: Theme.of(context).colorScheme.primary),
                     ],
                   )),
             ],
