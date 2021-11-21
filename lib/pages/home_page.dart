@@ -42,7 +42,10 @@ class _HomePageState extends State<HomePage> {
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           _walletAddress = snapshot.data.toString();
-                          return Text("Wallet address: $_walletAddress");
+                          return Text(
+                            "Wallet address: $_walletAddress",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          );
                         })
                   ],
                 ),

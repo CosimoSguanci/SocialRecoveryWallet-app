@@ -1,6 +1,1 @@
-enum Roles {
-  none,
-  spender,
-  guardian,
-  trustedAddress
-}
+enum Roles { none, spender, guardian, trustedAddress }

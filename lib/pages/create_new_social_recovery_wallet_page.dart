@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:social_recovery_wallet_app/global_state_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CreateNewSocialRecoveryWalletPage extends StatefulWidget {
   const CreateNewSocialRecoveryWalletPage({Key? key}) : super(key: key);
@@ -65,7 +65,9 @@ class _CreateNewSocialRecoveryWalletPageState
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           _walletAddress = snapshot.data.toString();
-                          return Text("Wallet address: $_walletAddress");
+                          return Text("Wallet address: $_walletAddress",
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold));
                         })
                   ],
                 ),
@@ -75,7 +77,8 @@ class _CreateNewSocialRecoveryWalletPageState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Current Guardians: ${_guardians.join(", ")}")
+                    Text("Guardians: ${_guardians.join(", ")}",
+                        style: const TextStyle(fontWeight: FontWeight.bold))
                   ],
                 ),
               ),
@@ -120,8 +123,8 @@ class _CreateNewSocialRecoveryWalletPageState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                        "Current Trusted Addresses: ${_trustedAddresses.join(", ")}")
+                    Text("Trusted Addresses: ${_trustedAddresses.join(", ")}",
+                        style: const TextStyle(fontWeight: FontWeight.bold))
                   ],
                 ),
               ),
@@ -275,7 +278,7 @@ class _CreateNewSocialRecoveryWalletPageState
                       ));
                     }
                   },
-                  child: const Text('CREATE',
+                  child: const Text('DEPLOY',
                       style: TextStyle(color: Colors.white)),
                 ),
               ),

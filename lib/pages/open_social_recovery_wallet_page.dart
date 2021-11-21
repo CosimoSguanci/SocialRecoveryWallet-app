@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:social_recovery_wallet_app/contracts/SocialRecoveryWallet.g.dart';
 import 'package:social_recovery_wallet_app/global_state_manager.dart';
 import 'package:social_recovery_wallet_app/utils/roles.dart';
 
@@ -25,7 +24,8 @@ class _OpenSocialRecoveryWalletPageState
   @override
   void initState() {
     _globalStateManager = GlobalStateManager();
-    contractAddressController.text = "0xcd2bd69e5d6ff124ce2785e599c13956ed4c658c"; // todo remove
+    contractAddressController.text =
+        "0x1d6515acd4583e5a6424e09f95b19370a15636cf"; // todo remove
     super.initState();
   }
 
@@ -51,7 +51,9 @@ class _OpenSocialRecoveryWalletPageState
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           _walletAddress = snapshot.data.toString();
-                          return Text("Wallet address: $_walletAddress");
+                          return Text("Wallet address: $_walletAddress",
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold));
                         })
                   ],
                 ),
@@ -65,7 +67,7 @@ class _OpenSocialRecoveryWalletPageState
                       Expanded(
                         child: Center(
                             child: Text(
-                          'Insert Social Recovery Wallet Contract Address: ',
+                          'Enter Social Recovery Wallet Contract Address: ',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
                       )
@@ -90,19 +92,21 @@ class _OpenSocialRecoveryWalletPageState
                           Container(
                               margin: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                  "Your role in this Social Recovery Wallet is ${_getRoleString(_role)}")),
+                                  "Your role in this Social Recovery Wallet is ${_getRoleString(_role)}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold))),
                           Container(
-                              margin: const EdgeInsets.only(top: 8.0),
+                              margin: const EdgeInsets.only(top: 16.0),
                               child: ElevatedButton(
-                                onPressed: ()  {
-                                  switch(_role) {
+                                onPressed: () {
+                                  switch (_role) {
                                     case Roles.spender:
-                                      Navigator.pushNamed(
-                                          context, '/spender_social_recovery_wallet_page');
+                                      Navigator.pushNamed(context,
+                                          '/spender_social_recovery_wallet_page');
                                       break;
                                     case Roles.guardian:
-                                      Navigator.pushNamed(
-                                          context, '/guardian_social_recovery_wallet_page');
+                                      Navigator.pushNamed(context,
+                                          '/guardian_social_recovery_wallet_page');
                                       break;
                                     default:
                                       break;

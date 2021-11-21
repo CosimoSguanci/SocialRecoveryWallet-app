@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:social_recovery_wallet_app/global_state_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GuardianSocialRecoveryWalletPage extends StatefulWidget {
   const GuardianSocialRecoveryWalletPage({Key? key}) : super(key: key);
@@ -71,6 +71,16 @@ class _GuardianSocialRecoveryWalletPageState
                   ],
                 ),
               ),
+              Container(
+                margin: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                        "Social Recovery Wallet Address: $_socialRecoveryWalletAddress")
+                  ],
+                ),
+              ),
               _showTx
                   ? Container(
                       margin: const EdgeInsets.all(16.0),
@@ -118,18 +128,26 @@ class _GuardianSocialRecoveryWalletPageState
                             setState(() {
                               _showProgressIndicator = true;
                             });
-                            var txHash = await _globalStateManager
-                                .confirmTransaction(int.parse(
-                                    confirmTransactionIndexController.text));
-                            setState(() {
-                              _showProgressIndicator = false;
-                              _showTx = true;
-                              _txHash = txHash;
-                            });
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text("Confirm Transaction sent"),
-                            ));
+                            try {
+                              var txHash = await _globalStateManager
+                                  .confirmTransaction(int.parse(
+                                      confirmTransactionIndexController.text));
+                              setState(() {
+                                _showProgressIndicator = false;
+                                _showTx = true;
+                                _txHash = txHash;
+                              });
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Confirm Transaction sent"),
+                              ));
+                            } catch (e) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text(
+                                    "ERROR: check the transaction ID and check if the transaction has already been executed"),
+                              ));
+                            }
                           },
                           child: const Text('Confirm Transaction',
                               style: TextStyle(color: Colors.white)),

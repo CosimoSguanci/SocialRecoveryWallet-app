@@ -12,12 +12,12 @@ class UnlockWalletPage extends StatefulWidget {
 }
 
 class _UnlockWalletPageState extends State<UnlockWalletPage> {
-
-final TextEditingController privateKeyController = TextEditingController();
+  final TextEditingController privateKeyController = TextEditingController();
 
   @override
   void initState() {
-    privateKeyController.text = ""; // todo remove
+    privateKeyController.text =
+        ""; // todo remove
     super.initState();
   }
 
@@ -25,7 +25,7 @@ final TextEditingController privateKeyController = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Import your Wallet'),
+          title: const Text('Social Recovery Wallet - Import Wallet'),
         ),
         body: SingleChildScrollView(
             child: SizedBox(
@@ -42,7 +42,7 @@ final TextEditingController privateKeyController = TextEditingController();
                       Expanded(
                         child: Center(
                             child: Text(
-                          'Insert Private Key: ',
+                          'Unlock wallet: ',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
                       )
