@@ -49,12 +49,15 @@ class _UnlockWalletPageState extends State<UnlockWalletPage> {
                     ],
                   )),
               Container(
-                child: TextField(
-                  obscureText: true,
-                  controller: privateKeyController,
-                  decoration: const InputDecoration(
-                      border: InputBorder.none, hintText: 'Private Key...'),
-                ),
+                child: SizedBox(
+                    height: 40,
+                    width: 250,
+                    child: TextField(
+                      obscureText: true,
+                      controller: privateKeyController,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, hintText: 'Private Key...'),
+                    )),
                 margin: const EdgeInsets.only(
                     left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
               ),
