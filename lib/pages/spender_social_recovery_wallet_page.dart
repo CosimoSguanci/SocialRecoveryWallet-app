@@ -14,12 +14,12 @@ class SpenderSocialRecoveryWalletPage extends StatefulWidget {
 
 class _SpenderSocialRecoveryWalletPageState
     extends State<SpenderSocialRecoveryWalletPage> {
+
   late GlobalStateManager _globalStateManager;
   late String _walletAddress;
   late String _socialRecoveryWalletAddress = "";
-  final List<String> _guardians = <String>[];
-  final List<String> _trustedAddresses = <String>[];
-  bool _showProgressIndicator = false;
+  //final List<String> _guardians = <String>[];
+  //final List<String> _trustedAddresses = <String>[];
   bool _showTx = false;
   late String _txHash;
   final String etherscanBaseUrl = dotenv.env['CHAIN']
@@ -30,12 +30,9 @@ class _SpenderSocialRecoveryWalletPageState
       : "https://etherscan.io/tx/";
 
   final TextEditingController sendFundsController = TextEditingController();
-  final TextEditingController submitTransactionEthController =
-      TextEditingController();
-  final TextEditingController destinationAddressController =
-      TextEditingController();
-  final TextEditingController executeTransactionIndexController =
-      TextEditingController();
+  final TextEditingController submitTransactionEthController = TextEditingController();
+  final TextEditingController destinationAddressController = TextEditingController();
+  final TextEditingController executeTransactionIndexController = TextEditingController();
 
   @override
   void initState() {
@@ -134,14 +131,10 @@ class _SpenderSocialRecoveryWalletPageState
                         margin: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
                           onPressed: () async {
-                            setState(() {
-                              _showProgressIndicator = true;
-                            });
                             var txHash = await _globalStateManager.sendEth(
                                 _socialRecoveryWalletAddress,
                                 double.parse(sendFundsController.text));
                             setState(() {
-                              _showProgressIndicator = false;
                               _showTx = true;
                               _txHash = txHash;
                             });
@@ -187,16 +180,12 @@ class _SpenderSocialRecoveryWalletPageState
                         margin: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
                           onPressed: () async {
-                            setState(() {
-                              _showProgressIndicator = true;
-                            });
                             var txHash =
                                 await _globalStateManager.submitTransaction(
                                     destinationAddressController.text,
                                     double.parse(
                                         submitTransactionEthController.text));
                             setState(() {
-                              _showProgressIndicator = false;
                               _showTx = true;
                               _txHash = txHash;
                             });
@@ -231,15 +220,11 @@ class _SpenderSocialRecoveryWalletPageState
                         margin: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
                           onPressed: () async {
-                            setState(() {
-                              _showProgressIndicator = true;
-                            });
                             try {
                               var txHash = await _globalStateManager
                                   .executeTransaction(int.parse(
                                       executeTransactionIndexController.text));
                               setState(() {
-                                _showProgressIndicator = false;
                                 _showTx = true;
                                 _txHash = txHash;
                               });
