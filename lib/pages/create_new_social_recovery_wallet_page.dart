@@ -53,11 +53,10 @@ class _CreateNewSocialRecoveryWalletPageState
             child: SizedBox(
           width: double.infinity,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                margin:
-                    const EdgeInsets.only(top: 32.0, left: 48.0),
+                margin: const EdgeInsets.only(top: 32.0, left: 48.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -73,6 +72,25 @@ class _CreateNewSocialRecoveryWalletPageState
                   ],
                 ),
               ),
+              _showTx
+                  ? Container(
+                      margin: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Tx Hash: $_deployTxHash",
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
+                          Container(
+                              margin: const EdgeInsets.only(top: 16.0),
+                              child: ElevatedButton(
+                                  onPressed: () async => await launch(
+                                      "$etherscanBaseUrl$_deployTxHash"),
+                                  child: const Text('View on Etherscan',
+                                      style: TextStyle(color: Colors.white))))
+                        ],
+                      ))
+                  : Container(),
               Container(
                 margin:
                     const EdgeInsets.only(left: 32.0, top: 32.0, right: 32.0),
@@ -85,9 +103,10 @@ class _CreateNewSocialRecoveryWalletPageState
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text("Guardians: ${_guardians.join(", ")}",
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold))
+                          Expanded(
+                              child: Text("Guardians: ${_guardians.join(", ")}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold)))
                         ],
                       ),
                     ),
@@ -136,10 +155,11 @@ class _CreateNewSocialRecoveryWalletPageState
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                              "Trusted Addresses: ${_trustedAddresses.join(", ")}",
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold))
+                          Expanded(
+                              child: Text(
+                                  "Trusted Addresses: ${_trustedAddresses.join(", ")}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold)))
                         ],
                       ),
                     ),
@@ -218,43 +238,6 @@ class _CreateNewSocialRecoveryWalletPageState
                                 'Number of confirmations to add trusted addresses...'),
                       ),
                     ),
-                    _showProgressIndicator
-                        ? Container(
-                            margin: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircularProgressIndicator(
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.primary,
-                                  valueColor: AlwaysStoppedAnimation(
-                                      Theme.of(context).colorScheme.secondary),
-                                ),
-                                Container(
-                                    margin: const EdgeInsets.only(top: 8.0),
-                                    child: const Text(
-                                        "Deploying Smart Contract..."))
-                              ],
-                            ))
-                        : Container(),
-                    _showTx
-                        ? Container(
-                            margin: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text("Tx Hash: $_deployTxHash"),
-                                Container(
-                                    margin: const EdgeInsets.only(top: 8.0),
-                                    child: ElevatedButton(
-                                        onPressed: () async => await launch(
-                                            "$etherscanBaseUrl$_deployTxHash"),
-                                        child: const Text('View on Etherscan',
-                                            style: TextStyle(
-                                                color: Colors.white))))
-                              ],
-                            ))
-                        : Container(),
                     Divider(color: Theme.of(context).colorScheme.primary),
                     Container(
                       margin: const EdgeInsets.all(16.0),

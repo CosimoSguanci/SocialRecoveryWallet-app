@@ -34,8 +34,7 @@ class _UnlockWalletPageState extends State<UnlockWalletPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                  margin: const EdgeInsets.only(
-                      left: 10.0, top: 40.0, right: 10.0, bottom: 20.0),
+                  margin: const EdgeInsets.only(top: 40.0, bottom: 40.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const <Widget>[
@@ -58,8 +57,7 @@ class _UnlockWalletPageState extends State<UnlockWalletPage> {
                       decoration: const InputDecoration(
                           border: InputBorder.none, hintText: 'Private Key...'),
                     )),
-                margin: const EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
+                margin: const EdgeInsets.only(bottom: 40.0),
               ),
               ElevatedButton(
                 onPressed: () {

@@ -42,7 +42,7 @@ class _OpenSocialRecoveryWalletPageState
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(32.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
@@ -59,8 +59,7 @@ class _OpenSocialRecoveryWalletPageState
                 ),
               ),
               Container(
-                  margin: const EdgeInsets.only(
-                      left: 10.0, top: 40.0, right: 10.0, bottom: 20.0),
+                  margin: const EdgeInsets.only(top: 40.0, bottom: 40.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const <Widget>[
@@ -81,7 +80,7 @@ class _OpenSocialRecoveryWalletPageState
                       hintText: 'Social Recovery Wallet Contract Address...'),
                 ),
                 margin: const EdgeInsets.only(
-                    left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
+                    left: 32.0, right: 32.0, bottom: 40.0),
               ),
               _showRole
                   ? Container(
@@ -89,14 +88,12 @@ class _OpenSocialRecoveryWalletPageState
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          Text(
+                              "Your role in this Social Recovery Wallet is ${_getRoleString(_role)}",
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                           Container(
-                              margin: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                  "Your role in this Social Recovery Wallet is ${_getRoleString(_role)}",
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold))),
-                          Container(
-                              margin: const EdgeInsets.only(top: 16.0),
+                              margin: const EdgeInsets.only(top: 32.0),
                               child: ElevatedButton(
                                 onPressed: () {
                                   switch (_role) {
@@ -118,19 +115,22 @@ class _OpenSocialRecoveryWalletPageState
                         ],
                       ))
                   : Container(),
-              ElevatedButton(
-                onPressed: () async {
-                  _globalStateManager
-                      .openSocialRecoveryWallet(contractAddressController.text);
-                  _role = await _globalStateManager.getRole(_walletAddress);
+              Container(
+                margin: const EdgeInsets.only(top: 16.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    _globalStateManager.openSocialRecoveryWallet(
+                        contractAddressController.text);
+                    _role = await _globalStateManager.getRole(_walletAddress);
 
-                  setState(() {
-                    _showRole = true;
-                  });
-                },
-                child: const Text('Check your Role',
-                    style: TextStyle(color: Colors.white)),
-              ),
+                    setState(() {
+                      _showRole = true;
+                    });
+                  },
+                  child: const Text('Check your Role',
+                      style: TextStyle(color: Colors.white)),
+                ),
+              )
             ],
           ),
         )));

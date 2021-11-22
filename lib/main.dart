@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
       title: 'Social Recovery Wallet',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.teal,
+          primarySwatch: Colors.indigo,
           colorScheme: const ColorScheme(
-            primary: Colors.teal,
+            primary: Colors.indigo,
             // <---- I set white color here
-            primaryVariant: Colors.teal,
+            primaryVariant: Colors.indigo,
             secondary: Colors.deepOrangeAccent,
             secondaryVariant: Colors.deepOrangeAccent,
             background: Colors.white,
