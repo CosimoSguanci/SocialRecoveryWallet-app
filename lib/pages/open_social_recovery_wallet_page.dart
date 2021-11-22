@@ -25,7 +25,7 @@ class _OpenSocialRecoveryWalletPageState
   void initState() {
     _globalStateManager = GlobalStateManager();
     contractAddressController.text =
-        "0x1d6515acd4583e5a6424e09f95b19370a15636cf"; // todo remove
+        ""; // todo remove
     super.initState();
   }
 

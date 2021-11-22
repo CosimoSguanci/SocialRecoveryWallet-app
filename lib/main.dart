@@ -9,7 +9,7 @@ import 'package:social_recovery_wallet_app/pages/spender_social_recovery_wallet_
 import 'package:social_recovery_wallet_app/pages/unlock_wallet_page.dart';
 
 Future main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: "dotenv");
   GlobalStateManager(); // Init global state...
   runApp(const MyApp());
 }
@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.indigo,
           colorScheme: const ColorScheme(
             primary: Colors.indigo,
-            // <---- I set white color here
             primaryVariant: Colors.indigo,
             secondary: Colors.deepOrangeAccent,
             secondaryVariant: Colors.deepOrangeAccent,

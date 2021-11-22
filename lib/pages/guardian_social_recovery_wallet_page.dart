@@ -60,7 +60,7 @@ class _GuardianSocialRecoveryWalletPageState
                 margin:
                     const EdgeInsets.only(top: 32.0, bottom: 32.0, left: 48.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     FutureBuilder(
                         future: _globalStateManager.getWalletAddress(),
