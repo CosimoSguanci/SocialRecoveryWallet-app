@@ -14,13 +14,14 @@ class CreateNewSocialRecoveryWalletPage extends StatefulWidget {
 
 class _CreateNewSocialRecoveryWalletPageState
     extends State<CreateNewSocialRecoveryWalletPage> {
+
   late GlobalStateManager _globalStateManager;
   late String _walletAddress;
   final List<String> _guardians = <String>[];
   final List<String> _trustedAddresses = <String>[];
-  bool _showProgressIndicator = false;
   bool _showTx = false;
   late String _deployTxHash;
+
   final String etherscanBaseUrl = dotenv.env['CHAIN']
               .toString()
               .toLowerCase() !=
@@ -29,13 +30,10 @@ class _CreateNewSocialRecoveryWalletPageState
       : "https://etherscan.io/tx/";
 
   final TextEditingController guardianController = TextEditingController();
-  final TextEditingController trustedAddressController =
-      TextEditingController();
+  final TextEditingController trustedAddressController = TextEditingController();
   final TextEditingController numConfTxController = TextEditingController();
-  final TextEditingController numConfChangeSpenderController =
-      TextEditingController();
-  final TextEditingController numConfAddTrustedAddressController =
-      TextEditingController();
+  final TextEditingController numConfChangeSpenderController = TextEditingController();
+  final TextEditingController numConfAddTrustedAddressController = TextEditingController();
 
   @override
   void initState() {
@@ -287,9 +285,6 @@ class _CreateNewSocialRecoveryWalletPageState
                                 numConfTx >= 0 &&
                                 numConfChangeSpender >= 0 &&
                                 numConfAddTrustedAddress >= 0) {
-                              setState(() {
-                                _showProgressIndicator = true;
-                              });
                               var txHash = await _globalStateManager
                                   .deploySocialRecoverWallet(
                                       spender,
@@ -299,7 +294,6 @@ class _CreateNewSocialRecoveryWalletPageState
                                       numConfChangeSpender,
                                       numConfAddTrustedAddress);
                               setState(() {
-                                _showProgressIndicator = false;
                                 _showTx = true;
                                 _deployTxHash = txHash;
                               });

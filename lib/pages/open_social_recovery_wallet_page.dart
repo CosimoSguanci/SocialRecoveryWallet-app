@@ -14,12 +14,12 @@ class OpenSocialRecoveryWalletPage extends StatefulWidget {
 
 class _OpenSocialRecoveryWalletPageState
     extends State<OpenSocialRecoveryWalletPage> {
+
   late GlobalStateManager _globalStateManager;
   late String _walletAddress;
   late Roles _role;
   bool _showRole = false;
-  final TextEditingController contractAddressController =
-      TextEditingController();
+  final TextEditingController contractAddressController = TextEditingController();
 
   @override
   void initState() {

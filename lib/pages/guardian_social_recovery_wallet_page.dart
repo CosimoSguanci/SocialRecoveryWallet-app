@@ -14,12 +14,12 @@ class GuardianSocialRecoveryWalletPage extends StatefulWidget {
 
 class _GuardianSocialRecoveryWalletPageState
     extends State<GuardianSocialRecoveryWalletPage> {
+
   late GlobalStateManager _globalStateManager;
   late String _walletAddress;
   late String _socialRecoveryWalletAddress = "";
-  final List<String> _guardians = <String>[];
-  final List<String> _trustedAddresses = <String>[];
-  bool _showProgressIndicator = false;
+  //final List<String> _guardians = <String>[];
+  //final List<String> _trustedAddresses = <String>[];
   bool _showTx = false;
   late String _txHash;
   final String etherscanBaseUrl = dotenv.env['CHAIN']
@@ -29,12 +29,9 @@ class _GuardianSocialRecoveryWalletPageState
       ? "https://${dotenv.env['CHAIN'].toString().toLowerCase()}.etherscan.io/tx/"
       : "https://etherscan.io/tx/";
 
-  final TextEditingController confirmTransactionIndexController =
-      TextEditingController();
-  final TextEditingController submitChangeSpenderRequestController =
-      TextEditingController();
-  final TextEditingController confirmChangeSpenderRequestIndexController =
-      TextEditingController();
+  final TextEditingController confirmTransactionIndexController = TextEditingController();
+  final TextEditingController submitChangeSpenderRequestController = TextEditingController();
+  final TextEditingController confirmChangeSpenderRequestIndexController = TextEditingController();
 
   @override
   void initState() {
@@ -131,15 +128,11 @@ class _GuardianSocialRecoveryWalletPageState
                         margin: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
                           onPressed: () async {
-                            setState(() {
-                              _showProgressIndicator = true;
-                            });
                             try {
                               var txHash = await _globalStateManager
                                   .confirmTransaction(int.parse(
                                       confirmTransactionIndexController.text));
                               setState(() {
-                                _showProgressIndicator = false;
                                 _showTx = true;
                                 _txHash = txHash;
                               });
@@ -181,14 +174,10 @@ class _GuardianSocialRecoveryWalletPageState
                         margin: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
                           onPressed: () async {
-                            setState(() {
-                              _showProgressIndicator = true;
-                            });
                             var txHash = await _globalStateManager
                                 .submitChangeSpenderRequest(
                                     submitChangeSpenderRequestController.text);
                             setState(() {
-                              _showProgressIndicator = false;
                               _showTx = true;
                               _txHash = txHash;
                             });
@@ -225,15 +214,11 @@ class _GuardianSocialRecoveryWalletPageState
                         margin: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
                           onPressed: () async {
-                            setState(() {
-                              _showProgressIndicator = true;
-                            });
                             var txHash = await _globalStateManager
                                 .confirmChangeSpenderRequest(int.parse(
                                     confirmChangeSpenderRequestIndexController
                                         .text));
                             setState(() {
-                              _showProgressIndicator = false;
                               _showTx = true;
                               _txHash = txHash;
                             });
