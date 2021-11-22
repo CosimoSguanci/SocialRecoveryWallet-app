@@ -205,6 +205,17 @@ class _CreateNewSocialRecoveryWalletPageState
                     Divider(color: Theme.of(context).colorScheme.primary),
                     Container(
                       margin: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const <Widget>[
+                          Text(
+                              "Number of confirmations to execute transactions",
+                              style: TextStyle(fontWeight: FontWeight.bold))
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(16.0),
                       child: TextField(
                         keyboardType: TextInputType.number,
                         controller: numConfTxController,
@@ -217,6 +228,16 @@ class _CreateNewSocialRecoveryWalletPageState
                     Divider(color: Theme.of(context).colorScheme.primary),
                     Container(
                       margin: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const <Widget>[
+                          Text("Number of confirmations to change spender",
+                              style: TextStyle(fontWeight: FontWeight.bold))
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(16.0),
                       child: TextField(
                         keyboardType: TextInputType.number,
                         controller: numConfChangeSpenderController,
@@ -227,6 +248,17 @@ class _CreateNewSocialRecoveryWalletPageState
                       ),
                     ),
                     Divider(color: Theme.of(context).colorScheme.primary),
+                    Container(
+                      margin: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const <Widget>[
+                          Text(
+                              "Number of confirmations to add trusted addresses",
+                              style: TextStyle(fontWeight: FontWeight.bold))
+                        ],
+                      ),
+                    ),
                     Container(
                       margin: const EdgeInsets.all(16.0),
                       child: TextField(
