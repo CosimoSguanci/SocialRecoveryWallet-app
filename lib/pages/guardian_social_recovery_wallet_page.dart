@@ -18,8 +18,6 @@ class _GuardianSocialRecoveryWalletPageState
   late GlobalStateManager _globalStateManager;
   late String _walletAddress;
   late String _socialRecoveryWalletAddress = "";
-  //final List<String> _guardians = <String>[];
-  //final List<String> _trustedAddresses = <String>[];
   bool _showTx = false;
   late String _txHash;
   final String etherscanBaseUrl = dotenv.env['CHAIN']
@@ -51,13 +49,13 @@ class _GuardianSocialRecoveryWalletPageState
             child: SizedBox(
           width: double.infinity,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
                 margin:
                     const EdgeInsets.only(top: 32.0, bottom: 32.0, left: 48.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     FutureBuilder(
                         future: _globalStateManager.getWalletAddress(),
@@ -84,7 +82,7 @@ class _GuardianSocialRecoveryWalletPageState
               ),
               _showTx
                   ? Container(
-                      margin: const EdgeInsets.all(32.0),
+                      margin: const EdgeInsets.only(top: 32.0, bottom: 16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
